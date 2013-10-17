@@ -9,7 +9,7 @@ Template.postSubmit.events({
 	  }
 
 	  post._id = Posts.insert(post);
-	  Meteor.Router.to('postPage', poast);
+	  Meteor.Router.to('postPage', post);
 
 	}
 });
