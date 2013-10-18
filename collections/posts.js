@@ -4,6 +4,12 @@ Posts.allow({
 	remove: ownsDocument
 });
 
+Posts.deny({
+	update: function(userId, post, fieldNames) {
+		// may only edit the following two fields:
+		return (_.without(fieldNames, 'url', 'title').length > 0);
+	}
+});
 Meteor.methods({
 	post: function(postAttributes) {
 		//define our user variable and check if a post with the same link already exists.
