@@ -1,7 +1,12 @@
 Posts = new Meteor.Collection('posts');
+Posts.allow({
+	update: ownsDocument,
+	remove: ownsDocument
+});
 
 Meteor.methods({
 	post: function(postAttributes) {
+		//define our user variable and check if a post with the same link already exists.
 		var user = Meteor.user(),
 			postWithSameLink = Posts.findOne({url: postAttributes.url});
 
