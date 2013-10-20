@@ -12,7 +12,7 @@ if (Posts.find().count() === 0) {
 	});
 	var sacha = Meteor.users.findOne(sachaId);
 
-	var telescopeId = Posts.instert({
+	var telescopeId = Posts.insert({
 		title: 'Introducing Telescope',
 		userId: sacha._id,
 		author: sacha.profile.name,
