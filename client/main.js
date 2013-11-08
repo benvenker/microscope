@@ -22,6 +22,10 @@ Deps.autorun(function(){
         created_at: Math.round(Meteor.user().createdAt/1000),
         user_name: Meteor.user().username,
         user_hash: Session.get('userEmailHash'),
+        widget: {
+          activator: '#Intercom',
+        	use_counter: true
+        },
 		app_id: "2c3fa0169acc4f0e48ef4e5224a53036dd77c06a"
 	  };
       Intercom('boot', intercomSettings);
