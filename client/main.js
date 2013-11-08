@@ -9,10 +9,16 @@ Deps.autorun(function() {
 
 Meteor.subscribe('notifications');
 
- window.intercomSettings = {
-    // TODO: The current logged in user's email address.
-    email: "john.doe@example.com",
-    // TODO: The current logged in user's sign-up date as a Unix timestamp.
-    created_at: 1234567890,
-    app_id: "2c3fa0169acc4f0e48ef4e5224a53036dd77c06a"
-  };
+Meteor.subscribe('currentUser');
+
+Deps.autorun(function() {
+	if (Meteor.user() && !Meteor.loggingIn()) {
+		var intercomSettings = {
+			email: Meteor.user().emails[0].address,
+			created_at: Math.round(Meteor.user().createdAt/1000),
+			user_name: Meteor.user().username,
+			app_id: "2c3fa0169acc4f0e48ef4e5224a53036dd77c06a"
+		};
+		Intercom('boot', intercomSettings);
+	}
+});

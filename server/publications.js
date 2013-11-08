@@ -17,3 +17,7 @@ Meteor.publish('comments', function(postId) {
 Meteor.publish('notifications', function() {
 	return Notifications.find({userId: this.userId});
 });
+
+Meteor.publish('currentUser', function() {
+	return Meteor.users.find(this.userId, {fields: {createdAt: 1}});
+});
